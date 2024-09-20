@@ -7,7 +7,7 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",  
+        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
         "format": {"type": "topojson", "feature": "Malaysia Map"}
       },
       "mark": {
@@ -22,28 +22,28 @@
       },
       "transform": [
         {
-          "lookup": "properties.name",  // Match the state names in the TopoJSON
+          "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/data/Total_Visitors_Millions.csv"  // CSV with Scaled_Visitors
+              "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/data/Total_Visitors_Millions.csv"
             },
-            "key": "State",  // Use the "State" field in the CSV for matching
-            "fields": ["Visitors","Scaled_Visitors"]  // Bring "Scaled_Visitors" for the choropleth coloring
+            "key": "State",
+            "fields": ["Visitors", "Scaled_Visitors"]
           }
         }
       ],
       "mark": {"type": "geoshape"},
       "encoding": {
         "color": {
-          "field": "Scaled_Visitors",  // Color based on the scaled visitors
+          "field": "Scaled_Visitors",
           "type": "quantitative",
           "title": "Scaled Visitors",
-          "scale": {"scheme": "tealblues"}  // Color scale for the choropleth
+          "scale": {"scheme": "tealblues"}
         },
         "tooltip": [
-          {"field": "properties.name", "type": "nominal", "title": "State"},  // State name
-          {"field": "Visitors", "type": "quantitative", "title": "Visitors in Millions)"},  // Visitors 
-          {"field": "Scaled_Visitors", "type": "quantitative", "title": "Visitors (Scaled)"} // Scaled Visitors
+          {"field": "properties.name", "type": "nominal", "title": "State"},
+          {"field": "Visitors", "type": "quantitative", "title": "Visitors in Millions"},
+          {"field": "Scaled_Visitors", "type": "quantitative", "title": "Visitors (Scaled)"}
         ]
       }
     },
@@ -55,8 +55,8 @@
       "mark": {
         "type": "geoshape",
         "fill": "none",
-        "stroke": "black",  // State boundaries
-        "strokeWidth": 0.8  // Bold state boundaries
+        "stroke": "black",
+        "strokeWidth": 0.8
       }
     }
   ]
