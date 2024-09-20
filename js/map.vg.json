@@ -5,7 +5,8 @@
   "title": "State Wise Tourism Rates in Malaysia",
   "projection": {
     "type": "equalEarth",
-    "center": [110, 3]  // Adjust this to bring the two parts closer together
+    "scale": 1400,            // Increase or decrease to fit the parts together
+    "translate": [400, 200]   // Manually adjust the X and Y translation to move the map
   },
   "layer": [
     {
