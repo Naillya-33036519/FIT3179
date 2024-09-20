@@ -1,42 +1,64 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "width": 800,
-    "height": 450,
-    "title": "State Wise Tourism Rates in Malaysia",
-    "projection": {"type": "equalEarth"},
-    "layer": [
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/output.topojson",
-          "format": {"type": "topojson", "feature": "Malaysia Map"}
-        },
-        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 450,
+  "title": "State Wise Tourism Rates in Malaysia (Choropleth Map)",
+  "projection": {"type": "equalEarth"},
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/output.topojson",  
+        "format": {"type": "topojson", "feature": "Malaysia Map"}
       },
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/Total_Visitors_Millions.csv"
-        },
-        "mark": {"type": "circle", "tooltip": {"content": "data"}},
-        "encoding": {
-          "longitude": {"field": "Longitude", "type": "quantitative"},
-          "latitude": {"field": "Latitude", "type": "quantitative"},
-          "size": {
-            "field": "Visitors",
-            "type": "quantitative",
-            "title": "Visitors in Millions"
-          },
-          "color": {
-            "field": "State",
-            "type": "nominal",
-            "title": "States in Malaysia",
-            "scale": {"scheme": "reds"}
-          },
-          "tooltip": [
-            {"field": "State", "type": "nominal", "title": "State"},
-            {"field": "Visitors", "type": "quantitative", "title": "Visitors (Millions)"}
-          ]
-        }
+      "mark": {
+        "type": "geoshape",
+        "fill": "white"
       }
-    ]
-  }
-  
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/output.topojson",
+        "format": {"type": "topojson", "feature": "my"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.name",  // Match the state names in the TopoJSON
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/Total_Visitors_Millions.csv"  // CSV with Scaled_Visitors
+            },
+            "key": "State",  // Use the "State" field in the CSV for matching
+            "fields": ["Visitors","Scaled_Visitors"]  // Bring "Scaled_Visitors" for the choropleth coloring
+          }
+        }
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "Scaled_Visitors",  // Color based on the scaled visitors
+          "type": "quantitative",
+          "title": "Scaled Visitors",
+          "scale": {"scheme": "tealblues"}  // Color scale for the choropleth
+        },
+        "tooltip": [
+          {"field": "properties.name", "type": "nominal", "title": "State"},  // State name
+          {"field": "Visitors", "type": "quantitative", "title": "Visitors in Millions)"},  // Visitors 
+          {"field": "Scaled_Visitors", "type": "quantitative", "title": "Visitors (Scaled)"} // Scaled Visitors
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/output.topojson",
+        "format": {"type": "topojson", "feature": "my"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": "none",
+        "stroke": "black",  // State boundaries
+        "strokeWidth": 0.8  // Bold state boundaries
+      }
+    }
+  ]
+}
+
