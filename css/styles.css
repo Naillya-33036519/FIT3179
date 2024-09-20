@@ -1,8 +1,15 @@
 #choropleth_map {
-	top:100px;
-	bottom: 100px; 
-	left: 100px;
-	right: 100px;
-	height: 1000px;
-	width: 800px;
+    position: relative;
+    margin: 0 auto;           /* Center horizontally */
+    top: 50px;                /* Adjust top margin to move down a bit */
+    height: 1000px;
+    width: 800px;
+    display: block;           /* Ensure it's treated as a block-level element */
+}
+
+/* Style for the title to increase size and center it */
+h1 {
+    font-size: 3rem;          /* Increase the title font size */
+    text-align: center;       /* Center the title */
+    margin-bottom: 20px;      /* Add some space between the title and the map */
 }
