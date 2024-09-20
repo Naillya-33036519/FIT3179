@@ -10,8 +10,17 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
   
-  <!-- Link to the CSS file -->
-  <link rel="stylesheet" type="text/css" href="homework_week9/styles.css">
+  <!-- Internal CSS -->
+  <style>
+    #choropleth_map {
+      top: 100px;
+      bottom: 100px; 
+      left: 100px;
+      right: 100px;
+      height: 1000px;
+      width: 800px;
+    }
+  </style>
 </head>
 <body>
   
@@ -20,7 +29,7 @@
 
   <script type="text/javascript">
     // Reference to the JSON specification file for Vega-Lite
-    var spec2 = "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/map.json"; // Update path to match folder structure 
+    var spec2 = "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/map.json";
     
     // Embed the Vega-Lite chart in the specified div
     vegaEmbed('#choropleth_map', spec2).then(function(result) {
