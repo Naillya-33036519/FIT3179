@@ -8,31 +8,13 @@
     {
       "data": {
         "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
-        "format": {"type": "topojson", "feature": "Malaysia Map"}
+        "format": {"type": "topojson", "feature": "my"}
       },
       "mark": {
         "type": "geoshape",
-        "fill": "white"
-      }
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
-        "format": {"type": "topojson", "feature": "my"}
+        "stroke": "black",
+        "strokeWidth": 0.8
       },
-      "transform": [
-        {
-          "lookup": "properties.name",
-          "from": {
-            "data": {
-              "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/data/Total_Visitors_Millions.csv"
-            },
-            "key": "State",
-            "fields": ["Visitors", "Scaled_Visitors"]
-          }
-        }
-      ],
-      "mark": {"type": "geoshape"},
       "encoding": {
         "color": {
           "field": "Scaled_Visitors",
@@ -45,19 +27,20 @@
           {"field": "Visitors", "type": "quantitative", "title": "Visitors in Millions"},
           {"field": "Scaled_Visitors", "type": "quantitative", "title": "Visitors (Scaled)"}
         ]
-      }
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
-        "format": {"type": "topojson", "feature": "my"}
       },
-      "mark": {
-        "type": "geoshape",
-        "fill": "none",
-        "stroke": "black",
-        "strokeWidth": 0.8
-      }
+      "transform": [
+        {
+          "lookup": "properties.name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/data/Total_Visitors_Millions.csv"
+            },
+            "key": "State",
+            "fields": ["Visitors", "Scaled_Visitors"]
+          }
+        }
+      ]
     }
   ]
 }
+
