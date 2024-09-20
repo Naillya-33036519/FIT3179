@@ -6,9 +6,6 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
   
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-
   <title>Choropleth Map</title>
 </head>
 <body>
@@ -16,10 +13,72 @@
   <div id="choropleth_map"></div>
 
   <script type="text/javascript">
-    // Path to your Vega-Lite spec
-    var spec2 = "https://cors-anywhere.herokuapp.com/https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/map.vg.json";
+    // Vega-Lite specification for the choropleth map
+    var spec2 = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 800,
+      "height": 450,
+      "title": "State Wise Tourism Rates in Malaysia (Choropleth Map)",
+      "projection": {"type": "equalEarth"},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
+            "format": {"type": "topojson", "feature": "Malaysia Map"}
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "white"
+          }
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
+            "format": {"type": "topojson", "feature": "my"}
+          },
+          "transform": [
+            {
+              "lookup": "properties.name",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/data/Total_Visitors_Millions.csv"
+                },
+                "key": "State",
+                "fields": ["Visitors", "Scaled_Visitors"]
+              }
+            }
+          ],
+          "mark": {"type": "geoshape"},
+          "encoding": {
+            "color": {
+              "field": "Scaled_Visitors",
+              "type": "quantitative",
+              "title": "Scaled Visitors",
+              "scale": {"scheme": "tealblues"}
+            },
+            "tooltip": [
+              {"field": "properties.name", "type": "nominal", "title": "State"},
+              {"field": "Visitors", "type": "quantitative", "title": "Visitors in Millions"},
+              {"field": "Scaled_Visitors", "type": "quantitative", "title": "Visitors (Scaled)"}
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
+            "format": {"type": "topojson", "feature": "my"}
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "none",
+            "stroke": "black",
+            "strokeWidth": 0.8
+          }
+        }
+      ]
+    };
 
-    // Embed the Vega-Lite chart
+    // Embed the Vega-Lite chart into the HTML
     vegaEmbed('#choropleth_map', spec2).then(function(result) {
       // Access the Vega view instance as result.view
     }).catch(console.error);
