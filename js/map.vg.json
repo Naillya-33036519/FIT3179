@@ -25,8 +25,7 @@
           "lookup": "properties.name",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/data/Total_Visitors_Millions.csv",
-              "format": {"type": "csv"}
+              "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/data/Total_Visitors_Millions.csv"
             },
             "key": "State",
             "fields": ["Visitors", "Scaled_Visitors"]
