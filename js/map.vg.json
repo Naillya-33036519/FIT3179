@@ -33,7 +33,7 @@
           "field": "Scaled_Visitors",
           "type": "quantitative",
           "title": "Scaled Visitors",
-          "scale": {"scheme": "tealblues"}
+          "scale": {"scheme": "blues"}
         },
         "tooltip": [
           {"field": "properties.name", "type": "nominal", "title": "State"},
