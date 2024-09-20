@@ -7,7 +7,7 @@
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/js/output.topojson",  
+        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",  
         "format": {"type": "topojson", "feature": "Malaysia Map"}
       },
       "mark": {
@@ -17,7 +17,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/js/output.topojson",
+        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
         "format": {"type": "topojson", "feature": "my"}
       },
       "transform": [
@@ -25,7 +25,7 @@
           "lookup": "properties.name",  // Match the state names in the TopoJSON
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/data/Total_Visitors_Millions.csv"  // CSV with Scaled_Visitors
+              "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/data/Total_Visitors_Millions.csv"  // CSV with Scaled_Visitors
             },
             "key": "State",  // Use the "State" field in the CSV for matching
             "fields": ["Visitors","Scaled_Visitors"]  // Bring "Scaled_Visitors" for the choropleth coloring
@@ -49,7 +49,7 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/homework_week9/js/output.topojson",
+        "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
         "format": {"type": "topojson", "feature": "my"}
       },
       "mark": {
