@@ -1,25 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choropleth Map</title>
+  
+  <!-- Vega & Vega-Lite scripts from CDN -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
   
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+  <!-- Link to the CSS file -->
+  <link rel="stylesheet" type="text/css" href="homework_week9/styles.css">
 </head>
 <body>
   
-<div id="choropleth_map"></div>
+  <!-- Div for the choropleth map -->
+  <div id="choropleth_map"></div>
 
-<script type="text/javascript">
-  var spec2 = "map.json"; // This should work if in the same folder
-  vegaEmbed('#choropleth_map', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
+  <script type="text/javascript">
+    // Reference to the JSON specification file for Vega-Lite
+    var spec2 = "homework_week9/map.json"; // Update path to match folder structure
+    
+    // Embed the Vega-Lite chart in the specified div
+    vegaEmbed('#choropleth_map', spec2).then(function(result) {
+      // Access the Vega view instance if needed
+    }).catch(console.error);
+  </script>
 
 </body>
 </html>
+
 
