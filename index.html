@@ -17,7 +17,69 @@
 
   <script type="text/javascript">
     // Path to your Vega-Lite spec
-    var spec2 = "js/map.vg.json";
+    var spec2 = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "width": 800,
+      "height": 450,
+      "title": "State Wise Tourism Rates in Malaysia (Choropleth Map)",
+      "projection": {"type": "equalEarth"},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
+            "format": {"type": "topojson", "feature": "Malaysia Map"}
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "white"
+          }
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
+            "format": {"type": "topojson", "feature": "my"}
+          },
+          "transform": [
+            {
+              "lookup": "properties.name",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/data/Total_Visitors_Millions.csv"
+                },
+                "key": "State",
+                "fields": ["Visitors", "Scaled_Visitors"]
+              }
+            }
+          ],
+          "mark": {"type": "geoshape"},
+          "encoding": {
+            "color": {
+              "field": "Scaled_Visitors",
+              "type": "quantitative",
+              "title": "Scaled Visitors",
+              "scale": {"scheme": "tealblues"}
+            },
+            "tooltip": [
+              {"field": "properties.name", "type": "nominal", "title": "State"},
+              {"field": "Visitors", "type": "quantitative", "title": "Visitors in Millions"},
+              {"field": "Scaled_Visitors", "type": "quantitative", "title": "Visitors (Scaled)"}
+            ]
+          }
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/Naillya-33036519/FIT3179/main/js/output.topojson",
+            "format": {"type": "topojson", "feature": "my"}
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": "none",
+            "stroke": "black",
+            "strokeWidth": 0.8
+          }
+        }
+      ]
+    };
 
     // Embed the Vega-Lite chart
     vegaEmbed('#choropleth_map', spec2).then(function(result) {
@@ -27,3 +89,4 @@
 
 </body>
 </html>
+
